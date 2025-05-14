@@ -8,7 +8,7 @@ db = SQLAlchemy()
 # MODELO SUCURSAL
 # ─────────────────────────────
 class Sucursal(db.Model):
-    __tablename__ = 'Sucursales'
+    __tablename__ = 'sucursales'
 
     sucursal_id = db.Column(db.Integer, primary_key=True)
     empresa_id = db.Column(db.Integer, nullable=False)
@@ -23,22 +23,15 @@ class Sucursal(db.Model):
 # MODELO EMPLEADO
 # ─────────────────────────────
 class Empleado(db.Model):
-    __tablename__ = 'Empleados'
-
+    __tablename__ = 'empleados'
     empleado_id = db.Column(db.Integer, primary_key=True)
-    sucursal_id = db.Column(db.Integer, db.ForeignKey('Sucursales.sucursal_id'), nullable=False)
+    sucursal_id = db.Column(db.Integer, db.ForeignKey('sucursales.sucursal_id'), nullable=False)
     nombre = db.Column(db.String(100), nullable=False)
     apellido = db.Column(db.String(100), nullable=False)
-    puesto = db.Column(db.String(20), nullable=False)
+    puesto = db.Column(db.String(12), nullable=False)
     fecha_contratacion = db.Column(db.Date)
-    salario = db.Column(db.Numeric(10, 2))
+    salario = db.Column(db.Numeric(10,2))
     activo = db.Column(db.Boolean)
-
-    email = db.Column(db.String(120), unique=True)
-    telefono_contacto = db.Column(db.String(20))
-    fecha_nacimiento = db.Column(db.Date)
-
-    usuario = db.relationship('Usuario', backref='empleado', uselist=False)
 
 # ─────────────────────────────
 # MODELO USUARIO (para login)

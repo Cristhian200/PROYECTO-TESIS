@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-2">
+    <div class="d-flex align-items-center">
+        <img src="{{ url_for('static', filename='images/LOGO LOCAL.jpg') }}" alt="Logo" style="height:48px; margin-right:12px;">
+        <span class="fs-4 fw-bold" style="color:#1565c0;">Zumba Lavandería</span>
+    </div>
+    <div>
+        <a href="{{ url_for('main.menu_principal') }}" class="btn btn-outline-secondary me-2">Menú Principal</a>
+        <a href="{{ url_for('empleados.nuevo') }}" class="btn btn-primary">+ Nuevo Empleado</a>
+    </div>
+</div>
+
+<h2 class="mt-3 mb-4">Empleados</h2>
+
+<div class="row g-4">
+    {% for e in empleados %}
+    <div class="col-12 col-md-6 col-lg-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <h5 class="card-title mb-2">{{ e.nombre }} {{ e.apellido }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{ e.puesto }}</h6>
+                <ul class="list-unstyled mb-3">
+                    <li><strong>Sucursal:</strong> {{ e.sucursal_id }}</li>
+                    <li><strong>Fecha Contratación:</strong> {{ e.fecha_contratacion }}</li>
+                    <li><strong>Salario:</strong> ${{ e.salario }}</li>
+                    <li>
+                        <strong>Activo:</strong>
+                        {% if e.activo %}
+                            <span class="badge bg-success">Sí</span>
+                        {% else %}
+                            <span class="badge bg-secondary">No</span>
+                        {% endif %}
+                    </li>
+                </ul>
+                <div class="d-flex justify-content-between">
+                    <a href="{{ url_for('empleados.editar', empleado_id=e.empleado_id) }}" class="btn btn-sm btn-warning">Editar</a>
+                    <form action="{{ url_for('empleados.eliminar', empleado_id=e.empleado_id) }}" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Eliminar empleado?')">Eliminar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

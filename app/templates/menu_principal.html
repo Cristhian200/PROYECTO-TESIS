@@ -2,11 +2,43 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menú Principal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/menu_principal.css') }}">
 </head>
 <body>
-    <h1>Bienvenido {{ current_user.nombre_usuario }}</h1>
-    <p>Has iniciado sesión correctamente.</p>
-    <a href="{{ url_for('auth.logout') }}">Cerrar sesión</a>
+    <div class="dashboard">
+        <!-- Barra lateral -->
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/LOGO LOCAL.jpg') }}" alt="Logo">
+                <h2>Zumba Lavanderia</h2>
+            </div>
+            <ul class="nav-links">
+                <li><a class="active" href="#">🏠 Inicio</a></li>
+                <li><a href="{{ url_for('empleados.lista') }}">👨‍💼 Empleados</a></li>                             
+                <li><a href="#">👥 Clientes</a></li>
+                <li><a href="#">📦 Productos</a></li>
+                <li><a href="#">🧺 Órdenes</a></li>
+                <li><a href="#">📈 Reportes</a></li>
+                <li><a href="#">🧾 Facturas</a></li>
+                <li><a href="#">🚚 Proveedores</a></li>
+                <li><a href="#">⚙️ Configuración</a></li>
+            </ul>
+        </aside>
+
+        <!-- Contenido principal -->
+        <main class="main-content">
+            <header>
+                <h1>Bienvenido, {{ current_user.nombre_usuario }} 👋</h1>
+            </header>
+            <section class="form-section">
+                <div class="welcome-message">
+                    <h2>¡Bienvenido al sistema de gestión de Zumba Lavandería!</h2>
+                    <p>Selecciona un módulo del menú lateral para comenzar a trabajar.</p>
+                </div>
+            </section>
+        </main>
+    </div>
 </body>
 </html>

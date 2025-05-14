@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card mx-auto shadow-sm" style="max-width: 500px;">
+    <div class="card-body">
+        <h3 class="card-title mb-4">Editar Empleado</h3>
+        <form method="post">
+            <p><strong>Sucursal ID:</strong> {{ empleado.sucursal_id }}</p>
+            <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                <input type="text" name="nombre" class="form-control" value="{{ empleado.nombre }}" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Apellido</label>
+                <input type="text" name="apellido" class="form-control" value="{{ empleado.apellido }}" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Puesto</label>
+                <select name="puesto" class="form-select" required>
+                    {% for p in ['Operador', 'Supervisor', 'Administrativo'] %}
+                    <option value="{{ p }}" {% if empleado.puesto == p %}selected{% endif %}>{{ p }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Fecha Contratación</label>
+                <input type="date" name="fecha_contratacion" class="form-control" value="{{ empleado.fecha_contratacion }}">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Salario</label>
+                <input type="number" step="0.01" name="salario" class="form-control" value="{{ empleado.salario }}">
+            </div>
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" name="activo" id="activo" {% if empleado.activo %}checked{% endif %}>
+                <label class="form-check-label" for="activo">Activo</label>
+            </div>
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-success">Guardar Cambios</button>
+                <a href="{{ url_for('empleados.lista') }}" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
