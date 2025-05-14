@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Zumba Lavandería</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Tu CSS personalizado -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='app/static/css/login.css') }}">
+</head>
+<body>
+    <div class="login-container container d-flex flex-column flex-md-row justify-content-center align-items-center">
+        <!-- Panel Izquierdo -->
+        <div class="left-panel text-center p-4">
+            <img src="{{ url_for('static', filename='images/LOGO LOCAL.jpg') }}" alt="Logo Zumba" class="logo mb-3">
+            <h2>Zumba Lavandería</h2>
+            <p>Control de Inventarios</p>
+        </div>
+        <!-- Panel Derecho -->
+        <div class="right-panel p-4">
+            <h1 class="mb-3">¡Bienvenido de Nuevo!</h1>
+            <p class="mb-4">✨ En Zumba Lavandería, tu ropa está en las mejores manos. ✨</p>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="alert alert-danger" role="alert">
+                        {% for category, message in messages %}
+                            <strong>{{ message }}</strong>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+
+            <form method="POST" action="{{ url_for('auth.login') }}">
+                <div class="form-group mb-3">
+                    <label for="email" class="form-label">Correo Electrónico</label>
+                    <input type="email" 
+                           class="form-control" 
+                           id="email" 
+                           name="email" 
+                           placeholder="ejemplo@hotmail.com" 
+                           required>
+                </div>
+                
+                <div class="form-group mb-4">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <input type="password" 
+                           class="form-control" 
+                           id="password" 
+                           name="password" 
+                           placeholder="Ingresa tu contraseña" 
+                           required>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">
+                    Iniciar Sesión
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

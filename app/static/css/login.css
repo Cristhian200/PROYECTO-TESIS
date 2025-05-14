@@ -1,0 +1,114 @@
+:root {
+    --primary-color: #4e73df;
+    --secondary-color: #f8f9fc;
+    --accent-color: #2e59d9;
+    --text-color: #5a5c69;
+}
+
+body {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    font-family: 'Nunito', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0; /* Quitamos el padding */
+}
+
+.login-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Centramos verticalmente */
+    justify-content: center; /* Centramos horizontalmente */
+    max-width: 900px; /* Reducimos un poco el ancho máximo */
+    width: 90%; /* Usamos porcentaje para responsividad */
+    min-height: 500px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 0.15rem 1.75rem rgba(58, 59, 69, 0.15);
+    overflow: hidden;
+    margin: auto; /* Asegura centrado horizontal */
+}
+
+.left-panel {
+    flex: 1;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center; /* Centra el texto */
+}
+
+.right-panel {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Centra los elementos horizontalmente */
+}
+
+.logo {
+    max-width: 130px; /* Ajustamos tamaño del logo */
+    height: auto;
+    margin-bottom: 20px;
+    display: block; /* Asegura que la imagen se centre */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    width: 100%; /* Asegura que los campos usen todo el ancho disponible */
+    max-width: 320px; /* Limita el ancho máximo de los campos */
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #d1d3e2;
+    border-radius: 0.35rem;
+    font-size: 1rem;
+    text-align: center; /* Centra el texto en los inputs */
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.35rem;
+    color: white;
+    font-weight: bold;
+    width: 100%;
+    max-width: 320px; /* Mismo ancho máximo que los campos */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-color);
+}
+
+/* Mejoramos el responsive design */
+@media (max-width: 768px) {
+    .login-container {
+        flex-direction: column;
+        min-height: auto;
+        width: 95%; /* Más ancho en móviles */
+        margin: 20px auto;
+    }
+    
+    .left-panel, .right-panel {
+        padding: 30px;
+        width: 100%;
+    }
+
+    .form-group, .btn-primary {
+        max-width: 100%; /* En móviles usan todo el ancho */
+    }
+}
